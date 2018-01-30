@@ -2,7 +2,7 @@
 
 # NB! Set your site's url, otherwise stuff will break :)
 
-url: "https://sestus.github.io"
+url: "https://mikemylonakis.com"
 
 # If you're hosting your site at a Project repository on GitHub pages
 # (https://yourusername.github.io/repository-name)
@@ -11,7 +11,7 @@ url: "https://sestus.github.io"
 #
 # NB! Without this *nothing* will work, because it's used in every path :)
 
-baseurl: /personal-jekyll-theme
+baseurl: ""
 
 # Google tracking id
 
