@@ -166,7 +166,7 @@ email: "michail.milonakis@gmail.com"
 # This works best when your author blurb image has a transparent background, or matches your site background color.
 
 # if the author_blurb is not set, then this feature is skipped
-author_blurb: "Welcome :smiley: I 'm Mike Mylonakis and I am currently working as a Data Scientist - Quantitative Developer at UBS, London. My areas of interest include Linux, Data Science (particularily interested in Data Engineering) and Software Architecture. During my spare time I enjoy playing with my Raspberry PIs and learning new stuff."
+author_blurb: "Welcome :smiley: I'm Mike Mylonakis and I am currently working as a Data Scientist - Quantitative Developer at UBS, London. My areas of interest include Linux, Data Science (particularily interested in Data Engineering) and Software Architecture. During my spare time I enjoy playing with my Raspberry PIs and learning new stuff."
 author_blurb_image: "/img/author.png"
 
 ##################
