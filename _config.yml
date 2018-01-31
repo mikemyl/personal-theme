@@ -174,10 +174,14 @@ author_blurb_image: "/img/author.png"
 ##################
 
 social:
-  - title: "facebook"
-    url: "https://www.facebook.com/michail.milonakis"
   - title: "github"
     url: "https://github.com/sestus"
+  - title: "stack-overflow"
+    url: "http://stackoverflow.com/users/2254704/sestus"
+  - title: "linkedin"
+    url: "www.linkedin.com/in/mmilonakis"
+  - title: "facebook"
+    url: "https://www.facebook.com/michail.milonakis"
   - title: "rss"
     url: "/feed.xml"
 
