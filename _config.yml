@@ -54,7 +54,7 @@ type-speed: 8
 start-delay: 200
 delete-delay: 5000
 lines: # You can add HTML Tags in the Text
-  - text: "Stop thinking... Start doing!"
+  - text: "Stop overthinking... Start doing!"
 
 me-img: "/img/me.png"
 
