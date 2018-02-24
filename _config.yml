@@ -156,7 +156,7 @@ timeline-img: "/img/timeline/default.png"
 # Contact #
 ###########
 
-email: "michail.milonakis@gmail.com"
+email: "mike@mikemylonakis.com"
 
 ################
 # Author Blurb #
@@ -228,4 +228,4 @@ gems:
   - jekyll-paginate
   - jemoji
 
-pgp: "https://gist.githubusercontent.com/sestus/f1228cf825aa5f3413e57a503edb592e/raw/80e3c6d098f59800e38d336cd384b984c1e0af6f/PGP%2520key"
+pgp: "https://gist.githubusercontent.com/sestus/7fad2cd01c1b7da7e6ff06dcc240ef3e/raw/ee5988c947c4004aac9889f765133f15e1870266/995FF86A.asc"
