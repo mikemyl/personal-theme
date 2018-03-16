@@ -105,7 +105,7 @@ icon-192p: "/img/web-app/me-192p.png"
 
 enable-gesture-navigation: False
 
-post-preview-words: 96
+post-preview-words: 80
 
 paginate: 5
 
@@ -224,8 +224,9 @@ paginate_path: "blog/page:num/"
 sass:
   style: compressed
 
-gems:
+plugins:
   - jekyll-paginate
   - jemoji
+  - jekyll-seo-tag
 
 pgp: "https://gist.githubusercontent.com/sestus/7fad2cd01c1b7da7e6ff06dcc240ef3e/raw/ee5988c947c4004aac9889f765133f15e1870266/995FF86A.asc"
