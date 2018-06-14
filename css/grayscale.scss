@@ -257,7 +257,8 @@ a {
     }
     pre {
       padding: 0;
-      > code {
+      margin-bottom: 25px;
+        > code {
         text-align: left;
       }
     }
@@ -444,4 +445,69 @@ body {
 
 .fourofour {
   border: 1px solid $primary-color !important;
+}
+
+/* The sidebar menu */
+.sidenav {
+    //height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 340px; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    //z-index: 1; /* Stay on top */
+    top: 10%; /* Stay at the top */
+    left: 0;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    overflow-y: hidden; /* Disable horizontal scroll */
+    text-align: left;
+    //background: #12122b;
+    border-left: 4px solid #00cdff;
+}
+
+/* The navigation menu links */
+.sidenav a {
+    text-align: left;
+    color: lightgray;
+    //display: block;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+    //color: #f1f1f1;
+    font-weight: bold;
+}
+
+.sidenav ul {
+    //padding: 0;
+    margin-bottom: 0;
+}
+
+
+.sidenav li {
+    list-style-type: none;
+    text-align: left;
+}
+
+
+/* Style page content */
+.main {
+  //  margin-left: 160px; /* Same as the width of the sidebar */
+    text-align: left;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidenav {display: none}
+}
+
+
+@media screen and (max-width: 1600px) {
+    .sidenav {display: none}
+}
+
+.sidenav::before {
+    content: "Contents";
+    font-weight: bold;
+    align-content: left;
+    display: block;
+    text-align: left;
+    //text-decoration: underline
 }
