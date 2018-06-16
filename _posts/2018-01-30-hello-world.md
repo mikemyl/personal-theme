@@ -20,11 +20,8 @@ unix password manager.
 Pass is a simple password manager that stores our credentials in gpg encrypted files, where the filenames correspond to the 
 respective titles of the service / website. 
 
-< image with a tree - and a simple password >
-
-We can also utilize the build-in git integration to keep those credentials
-synced between our devices. Note that, although our passwords are encrypted (so without our private key they cannot be decrypted)
-the filenames are not encrypted so one could see the websites / services that we maintain an account. We could use a private and / or a self-hosted git repository as a workaround. 
+We can also utilize the build-in git integration to keep those credentials synced between our devices - including Android, iOS
+devices windows computers etc.
 
 ### Prerequisites
 
@@ -39,9 +36,6 @@ If not, get the latest verion from [GnuPG website](https://www.gnupg.org/downloa
 
 {% highlight shell %}
 gpg --version
-{% endhighlight %}
-
-<pre>
 gpg (GnuPG) 2.2.5
 libgcrypt 1.8.2
 Copyright (C) 2018 Free Software Foundation, Inc.
@@ -56,7 +50,7 @@ Cipher: IDEA, 3DES, CAST5, BLOWFISH, AES, AES192, AES256, TWOFISH,
         CAMELLIA128, CAMELLIA192, CAMELLIA256
 Hash: SHA1, RIPEMD160, SHA256, SHA384, SHA512, SHA224
 Compression: Uncompressed, ZIP, ZLIB, BZIP2
-</pre>
+{% endhighlight %}
 
 So let's generate our gpg key using the following command:
 
@@ -73,9 +67,7 @@ remember our credentials for all those services that we use so a single key's pa
 We can verify that the key was successfully generated, using the command below:
 
 {% highlight shell %}
-gpg -K
-{% endhighlight %}
-<pre>
+$ gpg -K
 gpg: checking the trustdb
 gpg: marginals needed: 3  completes needed: 1  trust model: pgp
 gpg: depth: 0  valid:   1  signed:   0  trust: 0-, 0q, 0n, 0m, 0f, 1u
@@ -86,7 +78,7 @@ sec   rsa2048 2018-06-10 [SC] [expires: 2019-06-10]
       15E886BF97A7828A2F5795DBC22FADC6585FDF18
 uid           [ultimate] Michail Mylonakis (My gpg key) <mike@mikemylonakis.com>
 ssb   rsa2048 2018-06-10 [E] [expires: 2019-06-10]
-</pre>  
+{% endhighlight %}
 
 #### Install pass
 
@@ -114,7 +106,7 @@ Let's also enable the git integration:
 pass git init
 {% endhighlight %}
 
-Now our password store (the `~/.password-store` directory) is a git repository, so we can utilize git to keep our password
+Now our password store (the _~/.password-store_ directory) is a git repository, so we can utilize git to keep our password
 synced between our multiple devices (we ll see how in a next section).
 
 
@@ -131,3 +123,155 @@ gpg --export-secret-keys > secret.asc
 ### Using pass
 
 
+#### Generate a new pass
+
+Now we are ready to start using pass. Let's generate our first simple password, for the website _test.com_:
+
+{% highlight shell %}
+pass generate test.com 10
+[master e065551] Add generated password for test.com.
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 test.com.gpg
+The generated password for test.com is:
++U%90>_*=Y
+{% endhighlight %}
+
+
+In the last line above, we see the (randomly) generated password. The number 10 that we passed as the last argument of
+the pass generate command specifies the password length. We can use the `-n or --no-symbols` option to blacklist specific
+chars. Our password is stored at the file _~/.password-store/test.com.gpg_ in an encrypted format. The file looks 
+like this:
+
+{% highlight shell %}
+cat .password-store/test.com/test.gpg 
+��}����X��t~�O���^d][&����e��q6��Gah��/4X#�-���6j����y�P�Cj���!)�h��I�W�-ݐ������MU����"�c�0GyWA�S�aI�?NHl�C�΅NI�
+c&c/b�M���ЫMψ"Ԃ7����b"Lw�0Y8M�NQԜ0���h�@G-�����E��u��B�@��4�X���5,�򧤶/}TʟS�x�J�YW,E��܂�@�&�a&����4��T@�=�PS���<�%p�{'�d�Jo'ԈjO��ë~/h��DG��%(�V�������(�K��Zi�[a�
+{% endhighlight %}
+
+#### Insert an existing password
+
+Now let's insert an already existing password.
+
+{% highlight shell %}
+pass insert social/twitter
+mkdir: created directory '/home/mike/.password-store/social'
+Enter password for social/twitter: 
+Retype password for social/twitter: 
+[master d2f3237] Add given password for social/twitter to store.
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 social/twitter.gpg
+{% endhighlight %}
+
+ We can organize the password store directory structure into categories, as seen bellow.
+
+#### Retrieve a password
+
+We can see what passwords exist in the password store usgin the `pass ls` command:
+
+{% highlight shell %}
+pass ls
+Password Store
+├── social
+│   └── twitter
+└── test.com
+{% endhighlight %}
+
+We can reveal a password like this:
+
+{% highlight shell %}
+pass test.com 
++U%90>_*=Y
+{% endhighlight %}
+
+If we pass the `-c` flag on the above command the password is copied to our clipboard and stays there for 45 seconds by
+default.
+
+
+#### Store more details
+
+Another interesting feature of pass is that we can store more details alongside with the password - just make sure
+that the first line contains the password as that's what pass copies into our clipboard. We can edit an existing 
+password using the `pass edit` command, in which case the text editor specified by the _$EDITOR_ env variable will 
+open up and let us modify the file. We can also use the `-m` flag in the _pass insert_ command to add the details
+in one go:
+
+{% highlight shell %}
+pass insert -m github
+Enter contents of github and press Ctrl+D when finished:
+
+mypassword
+url: github.com
+username: myusername
+[master 791253d] Add given password for github to store.
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 github.gpg
+{% endhighlight %}
+
+#### Remove a password
+
+We can easily remove an existing password:
+
+{% highlight shell %}
+pass rm github 
+Are you sure you would like to delete github? [y/N] y
+removed '/home/mike/.password-store/github.gpg'
+[master 99c7fda] Remove github from store.
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ delete mode 100644 github.gpg
+{% endhighlight %}
+
+### Git integration
+
+#### Interacting with the git repo
+
+As we have enabled git integration in the beginning of this guide our passwords are stored encrypted in a 
+full-fledged git repository. We can examine the repo using the normal git commands prepended by pass:
+
+{% highlight shell %}
+pass git log
+commit 791253d6ad8bd4149f1106a3a32f1d65c55c34df (HEAD -> master)
+Author: Mike <mike@mikemylonakis.com>
+Date:   Sat Jun 16 17:58:00 2018 +0100
+
+    Add given password for github to store.
+
+commit 99c7fdaf5a902f2dd6e31f211933fdb950b8548b
+Author: Mike <mike@mikemylonakis.com>
+Date:   Sat Jun 16 17:53:41 2018 +0100
+
+    Remove github from store.
+
+commit 53f887ce03aadbe865daead5923fb6dbb2e44b26
+Author: Mike <mike@mikemylonakis.com>
+Date:   Sat Jun 16 17:51:23 2018 +0100
+
+    Edit password for test.com using vi.
+...
+{% endhighlight %}
+
+#### Adding a remote
+
+We can easily add a remote so that we can clone the repo from other devices.
+Note however that, although our passwords are encrypted (so without our private key they cannot 
+be decrypted) the filenames are not encrypted so one could see the websites / services that we maintain an account.
+
+We could use a private or a self-hosted git repository as a workaround:
+
+{% highlight shell %}
+pass git remote add origin git@bitbucket.org:username/private-git-repo.git
+{% endhighlight %}
+
+And then push our password-store to the remote:
+
+{% highlight shell %}
+pass git push origin master
+{% endhighlight %}
+
+Now all we have to do is import our private key (using the .asc file that we have exported) into our other device and
+clone the repo to start using pass and have our passwords synced!
+
+### Conclusion
+
+Pass is a very simple but powerful password manager that is open source (thus free) easy to use and can keep our 
+passwords synced across many devices. There are also some very cool pass [clients](https://www.passwordstore.org/#other) and
+[extensions](https://www.passwordstore.org/#extensions) that make working with pass even easier.

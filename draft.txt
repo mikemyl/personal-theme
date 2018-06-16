@@ -1,0 +1,4 @@
+echo -n "stop_all" >> fifo_cmd
+echo -n "run_all" >> fifo_cmd
+
+https://sourceforge.net/p/parcellite/feature-requests/40/
