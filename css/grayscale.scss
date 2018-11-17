@@ -34,6 +34,7 @@ h6 {
     font-family: "Montserrat","Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: 700;
     letter-spacing: 1px;
+    color: $header-color;
 }
 
 /* Added in { Personal } */
@@ -114,6 +115,7 @@ a {
         text-align: center;
         li {
             a {
+                font-weight: bold;
                 -webkit-transition: background .3s ease-in-out;
                 -moz-transition: background .3s ease-in-out;
                 transition: background .3s ease-in-out;
@@ -460,6 +462,7 @@ body {
     text-align: left;
     //background: #12122b;
     border-left: 4px solid #00cdff;
+    font-size: 7px;
 }
 
 /* The navigation menu links */
@@ -512,6 +515,13 @@ body {
     //text-decoration: underline
 }
 
-.language-shell::before {
-    content: "$ ";
+//.language-shell::before {
+//    content: "$ ";
+//}
+
+.noselect {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
