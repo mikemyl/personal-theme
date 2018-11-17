@@ -115,7 +115,7 @@ a {
         text-align: center;
         li {
             a {
-                font-weight: bold;
+                //font-weight: bold;
                 -webkit-transition: background .3s ease-in-out;
                 -moz-transition: background .3s ease-in-out;
                 transition: background .3s ease-in-out;
@@ -524,4 +524,10 @@ body {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
+}
+
+.highlighter-rouge {
+    background: inherit;
+    color: inherit;
+    font: 0.85em Monaco, Courier, Monospace;
 }
